@@ -1,4 +1,4 @@
-// --- Получение элементов DOM ---
+// Получение элементов DOM
 const hoursEl = document.getElementById("hours");
 const minutesEl = document.getElementById("minutes");
 const secondsEl = document.getElementById("seconds");
@@ -15,14 +15,14 @@ const resetBtn = document.getElementById("resetBtn");
 const lapsContainer = document.getElementById("lapsContainer");
 const lapList = document.getElementById("lapList");
 
-// --- Константы и переменные состояния ---
+// Константы и переменные состояния
 const circumference = 2 * Math.PI * 52;
 let elapsedTime = 0;   // Общее время в секундах
 let timer = null;      // ID интервала
 let isRunning = false; // Флаг работы таймера
 let lapCount = 0;      // Счетчик кругов
 
-// --- Вспомогательные функции ---
+// Вспомогательные функции
 
 // Форматирует секунды в строку "HH:MM:SS"
 function formatTime(totalSeconds) {
@@ -47,7 +47,7 @@ function updateCircleProgress(circle, value, max) {
     circle.style.strokeDasharray = `${progress} ${circumference}`;
 }
 
-// --- Основная логика обновления интерфейса ---
+// Основная логика обновления интерфейса
 function updateDisplay() {
     const { hours, minutes, seconds } = getTimeParts(elapsedTime);
 
@@ -62,7 +62,7 @@ function updateDisplay() {
     updateCircleProgress(secondsCircle, seconds, 60);
 }
 
-// --- Обработчики кнопок ---
+// Обработчики кнопок
 function start() {
     if (isRunning) return;
 
@@ -124,19 +124,19 @@ function reset() {
     lapList.innerHTML = "";
     lapsContainer.style.display = "none";
 
-    // Управление состоянием кнопок (согласно таблице: активны Start и Reset)
+    // Управление состоянием кнопок
     startBtn.disabled = false;
     stopBtn.disabled = true;
     lapBtn.disabled = true;
 }
 
-// --- Назначение событий ---
+// Назначение событий
 startBtn.addEventListener("click", start);
 stopBtn.addEventListener("click", stop);
 lapBtn.addEventListener("click", recordLap);
 resetBtn.addEventListener("click", reset);
 
-// --- Инициализация страницы ---
+// Инициализация страницы
 // Устанавливаем начальное состояние интерфейса
 updateDisplay();
 startBtn.disabled = false;
